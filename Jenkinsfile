@@ -1,12 +1,16 @@
 pipeline {
     agent any
-
     tools 
     {
         nodejs 'node'
     }
 
-    stages {
+    environment {
+        DOCKERHUB_CREDENTIALS= credentials('docker hub')
+        DOCKER_IMAGE_NAME = 'koushaliya/react01auto'
+    }
+
+  stages{
         stage('Checkout') {
             steps {
                 // Checkout your code from your version control system
@@ -21,28 +25,6 @@ pipeline {
             }
         }
         
-        stage('Build') {
-            steps {
-                // Build your React application
-                sh 'npm run build'
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                // Run tests if you have them
-                echo'npm test'
-            }
-        }
 
-        stage('Deploy') {
-            steps {
-                // Deploy your application to a server
-                // You may need to adjust this step based on your deployment strategy
-                echo 'npm run deploy'
-            }
-        }
+  }
     }
-    
-   
-}
