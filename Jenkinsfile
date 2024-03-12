@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    tools 
-    {
-        nodejs 'node'
-    }
+
 
     environment {
         DOCKERHUB_CREDENTIALS= credentials('docker hub')
@@ -18,12 +15,7 @@ pipeline {
             }
         }
         
-        stage('Install Dependencies') {
-            steps {
-                // Install Node.js and npm if necessary
-                sh 'npm install'
-            }
-        }
+        
         
 
   }
